@@ -1,0 +1,107 @@
+body {
+  background-color: rgba(32, 57, 120, 0.333);
+  color: white;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+header,
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form input,
+form button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  background: white;
+}
+
+/* Todo list */
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list {
+  min-width: 30%;
+}
+
+.todo {
+  background-color: white;
+  color: black;
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.4rem;
+}
+
+.todo li {
+  flex: 1;
+  padding: 0.4rem;
+}
+
+.delete-btn,
+.complete-btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.complete-btn{
+  background-color: green;
+}
+
+.delete-btn{
+  background-color: red;
+}
+.fa-trash, .fa-check{
+  pointer-events: none;
+}
+
+.completed{
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.select{
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+select{
+  color : #888889;
+  width: 10rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: #17181a;
+}
+
+.select::after{
+  content: "\25BC";
+  position: absolute;
+  background: #24262a;
+  color: #f9f9f9;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  pointer-events: none;
+}

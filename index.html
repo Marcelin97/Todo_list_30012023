@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta
+      name="description"
+      content="Création d'une todo list from scratch html, css et javaScript."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./reset.css" />
+</head>
+<body>
+    <header>
+        <h1>Todo List</h1>
+    </header>
+    <main>
+        <form action="">
+            <input type="text" class="todo-input">
+            <button class="todo-button" type="submit">
+                <i class="fas fa-plus-square"></i>
+            </button>
+            <div class="select">
+                <select name="todos" class="filter-todo">
+                    <option value="all">Toutes</option>
+                    <option value="completed">Complétée</option>
+                    <option value="uncompleted">à faire</option>
+                </select>
+            </div>
+        </form>
+        <div class="todo-container">
+            <ul class="todo-list">
+            </ul>
+        </div>
+    </main>
+    <footer></footer>
+    <!-- kit FontAwesome pour les icônes -->
+    <script src="https://kit.fontawesome.com/3742821b69.js" crossorigin="anonymous"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
