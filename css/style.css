@@ -1,0 +1,352 @@
+/* Variables */
+:root {
+  --primary: #5526c5;
+  --secondary: #8659e9;
+  --business: #2a1d32;
+  --personal: #1ce;
+  --light: #fff;
+  --dark: #313154;
+  --danger: #ff5b57;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+/* End of Variables */
+
+/*common to several elements*/
+* {
+  font-family: "inter", Arial, Helvetica, sans-serif;
+  box-sizing: border-box; /* réinitialise le modèle de boîte à border-box pour tous les éléments HTML*/
+  scroll-behavior: smooth; /*Faire défiler progressivement*/
+  color: var(--dark);
+  line-height: 1.5em !important;
+}
+
+main {
+  padding: 25px 15px;
+}
+
+input:not([type="radio"]):not([type="checkbox"]),
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: initial;
+}
+/*common to several elements*/
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+header h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+h3 {
+  color: var(--dark);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 4rem;
+}
+
+h4 {
+  color: var(--dark);
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.greeting {
+  display: flex;
+  flex-direction: row;
+}
+
+.greeting .title input {
+  margin-left: 0.2rem;
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.greeting .title,
+.greeting .title input {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.greeting .title input[type="text"]::placeholder {
+  color: var(--dark);
+}
+
+/* form to create a task */
+#new-todo-form {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.textbox {
+  position: relative;
+  display: flex;
+  height: 4rem;
+  border: 0;
+  border-radius: 4rem;
+}
+
+.textbox input[type="text"] {
+  width: 100%;
+  height: 3rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--primary);
+  padding-left: 10px;
+  color: rgb(255, 255, 255 / 96%);
+  transition: 0.3s;
+}
+
+.textbox label {
+  position: absolute;
+  display: grid;
+  height: 2rem;
+  width: 100%;
+  border: 0;
+  border-radius: 0.5rem;
+  place-items: center;
+  transform-origin: 0% 0%;
+  top: 9px;
+  left: 4px;
+  background: var(--primary);
+  transition: 0.3s;
+  color: var(--light);
+  translate: 0 -40px;
+  scale: 0.825;
+}
+
+.textbox input::placeholder {
+  color: var(--dark);
+}
+
+.textbox :is(input:focus, input:valid) {
+  padding-left: 15px;
+}
+
+/* Choose a category */
+.create-todo .options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  gap: 2rem;
+}
+
+.create-todo .options label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.create-todo .options label input {
+  position: absolute;
+  transform: scale(0);
+}
+
+.radio-button {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  border-radius: 50%;
+}
+.radio-button.personal {
+  border: 2px solid var(--personal);
+}
+.radio-button.business {
+  border: 2px solid var(--business);
+}
+.radio-button-inner {
+  display: block;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.35s;
+}
+.radio-button-inner.personal {
+  background: var(--personal);
+}
+.radio-button-inner.business {
+  background: var(--business);
+}
+.radio-label {
+  font-size: 1.25rem;
+  color: var(--dark);
+}
+
+/* Animation on click */
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.75);
+  }
+}
+
+.radio-pulse {
+  position: absolute;
+  display: none;
+  top: -11px;
+  left: -11px;
+  z-index: 0;
+  opacity: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  animation: pulse 0.5s linear;
+}
+.radio-pulse.personal {
+  background: var(--personal);
+}
+.radio-pulse.business {
+  background: var(--business);
+}
+input:checked ~ .radio-button .radio-button-inner {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+
+input:checked ~ .radio-pulse {
+  display: block;
+}
+
+input:checked ~ .radio-button.personal {
+  border-color: var(--personal);
+}
+input:checked ~ .radio-button.business {
+  border-color: var(--business);
+}
+input:checked ~ .radio-label {
+  color: var(--dark);
+}
+
+.create-todo input[type="submit"] {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-self: center;
+  background: var(--primary);
+  height: 4.5rem;
+  padding: 0 3rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  color: var(--light);
+  cursor: pointer;
+  transition-property: background, box-shadow;
+  transition-duration: all 0.35s;
+  margin-bottom: 2rem;
+}
+
+.create-todo input[type="submit"]:hover {
+  background: var(--secondary);
+}
+.create-todo input[type="submit"]:focus {
+  box-shadow: 0 0 1px 1px var(--secondary);
+}
+
+/* Liste des tâches */
+.todo-list h3{
+	display: flex;
+	justify-content: center;
+}
+.todo-list .list{
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-list .todo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-items: space-around;
+  background-color: var(--light);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+
+.todo-item label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.todo-item label .paragraphe {
+  font-size: 0.8rem;
+}
+
+.todo-content input{
+	height: 3rem;
+	text-overflow: ellipsis;
+}
+.todo-item .todo-content {
+  flex: 1 1 0%;
+}
+
+.todo-item .todo-content input {
+  font-size: 1rem;
+}
+
+.todo-item .actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.todo-item .actions button {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  color: var(--light);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.todo-item .actions button:hover {
+  opacity: 0.75;
+}
+
+.todo-item .actions .edit {
+  margin-right: 0.5rem;
+  background-color: var(--primary);
+}
+
+.todo-item .actions .delete {
+  background-color: var(--danger);
+}
+
+.todo-item.done .todo-content input {
+  text-decoration: line-through;
+  color: var(--dark);
+}
